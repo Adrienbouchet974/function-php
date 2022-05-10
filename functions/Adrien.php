@@ -13,49 +13,72 @@ function checkPassword($password) {
     $nombres    = preg_match('@[0-9]@', $password);
     $specialChars = preg_match('@[^\w]@', $password);
     
-    
-    
-
-    
     //$password est vide
     if(empty($password))
+    {
     echo 
     '<div class="progress">
         <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" style="width: 0%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
     </div></br>';
+    echo 
+    '<div class="card list-group">
+        <p class="justify-content-md-center text-center list-group-item list-group-item-action active col-6 col-md-4">Le mot de passe doit contenir les caractèrs suivants :</p>
+    </div>';
+    }
+
+    //$password contient une valeur correspondante ( majuscules, minuscules, nombres, caractère spécial )
+    elseif($password == $majuscules || $password == $nombres || $password == $minuscules || $password == $specialChars)
+    {
+    echo 
+    '<div class="progress">
+        <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+    </div></br>';
+    echo 
+    '<div class="card list-group">
+        <p class="justify-content-md-center text-center list-group-item list-group-item-action active col-6 col-md-4">Le mot de passe doit contenir les caractèrs suivants :</p>
+    </div>';
+    }
+
+    //$password contient 2 valeurs correspondante
+    elseif($password == $majuscules.$minuscules || $password == $majuscules.$nombres || $password == $majuscules.$specialChars)
+    {
+    echo 
+    '<div class="progress">
+        <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+    </div></br>';
+    echo 
+    '<div class="card list-group">
+        <p class="justify-content-md-center text-center list-group-item list-group-item-action active col-6 col-md-4">Le mot de passe doit contenir les caractèrs suivants :</p>
+    </div>';
+    }
     
-    else
-    {   //$password contient une valeur correspondante ( majuscules, minuscules, nombres, caractère spécial )
-        if($password == $majuscules || $password == $nombres || $password == $minuscules || $password == $specialChars)
-        echo 
-        '<div class="progress">
-            <div class="progress-bar progress-bar-striped bg-danger progress-bar-animated" role="progressbar" style="width: 20%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-        </div></br>';
 
-        //$password contient 2 valeurs correspondante
-        if($password == $majuscules and $minuscules || $password == $majuscules and $nombres || $password == $majuscules and $specialChars)
-        echo 
-        '<div class="progress">
-            <div class="progress-bar progress-bar-striped bg-warning progress-bar-animated" role="progressbar" style="width: 40%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-        </div></br>';
+    //$password contient 3 valeurs correspondantes
+    elseif($password == $majuscules.$minuscules.$nombres || $password == $majuscules.$minuscules.$specialChars)
+    {
+    echo 
+    '<div class="progress">
+        <div class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+    </div></br>';
+    echo 
+    '<div class="card list-group">
+        <p class="justify-content-md-center text-center list-group-item list-group-item-action active col-6 col-md-4">Le mot de passe doit contenir les caractèrs suivants :</p>
+    </div>';
+    }
+    
 
-        //$password contient 3 valeurs correspondantes
-        if($password == $majuscules + $minuscules + $nombres || $password == $majuscules + $minuscules + $specialChars)
-        echo 
-        '<div class="progress">
-            <div class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" style="width: 60%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-        </div></br>';
-
-        //$password contient 4 valeurs correspondantes
-        if($password == $majuscules + $minuscules + $nombres + $specialChars)
-        echo 
-        '<div class="progress">
-            <div class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" style="width: 80%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-        </div></br>';
+    //$password contient 4 valeurs correspondantes
+    elseif($password == $majuscules.$minuscules.$nombres.$specialChars)
+    {
+    echo 
+    '<div class="progress">
+        <div class="progress-bar progress-bar-striped bg-info progress-bar-animated" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+    </div></br>';
     }
 
     //$password contient 4 valeurs correspondantes et fait 12 caractères minimum
-    if(strlen($password) >= 12 && $password == $majuscules + $minuscules + $nombres + $specialChars)
+    
+    elseif(strlen($password) >= 12 && $password = $majuscules.$minuscules.$nombres.$specialChars)
     {
     echo
     '<div class="progress">
@@ -63,23 +86,6 @@ function checkPassword($password) {
     </div></br>';
     echo '<button type="button" class="btn btn-success"><a href="index.php?password=">OK</a></button>';
     }
-
-    else
-    {
-    echo 
-    '<div class="card list-group">
-        <p class="justify-content-md-center text-center list-group-item list-group-item-action active col-6 col-md-4">Le mot de passe doit contenir les caractèrs suivants :</p>
-    </div>';
-    }
-
-
-   
-    
-    
-    
-
-
-    
 
 
     if($password = empty($majuscules))
@@ -98,12 +104,4 @@ function checkPassword($password) {
     {
     echo '<p class="text-center list-group-item list-group-item-action">1 charactère spécial</p>';
     }
-    
-    
-
 }
-
-//echo 
-    '<div class="progress">
-        <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-    </div></br>';
