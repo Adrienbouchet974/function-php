@@ -27,7 +27,7 @@ use function Adrien\checkPassword;
 
                 $password = $_GET['password'];
 
-                include_once('./functions/Adrien.php');
+                include_once('./functions/adrien.php');
                 checkPassword($password);
 
             }
