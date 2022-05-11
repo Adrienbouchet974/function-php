@@ -12,104 +12,68 @@ function checkPassword($password) {
     $minuscules = preg_match('@[a-z]@', $password);
     $nombres    = preg_match('@[0-9]@', $password);
     $specialChars = preg_match('@[^\w]@', $password);
-    $i = 0;
-    $color = NULL;
+    $i = NULL;
+    $barre = '<div class="progress">
+                <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" style="width:'.$i.'%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            </div></br>';
     
-
-    //$password est vide
+    
+    
     if(empty($password))
     {
-    $i = $i+ 0;
-    echo 
-    '<div class="progress">
-        <div class="progress-bar progress-bar-striped '.$color.' progress-bar-animated" role="progressbar" style="width:'.$i.'%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-    </div></br>';
+    $i = $i + 0;
     }
-    
+    else{}
 
     
-    //$password contient une valeur correspondante ( majuscules, minuscules, nombres, caractère spécial )
     if($majuscules)
     {
     $i += 20;
-    echo 
-    '<div class="progress">
-        <div class="progress-bar progress-bar-striped'.$color.' progress-bar-animated" role="progressbar" style="width:'.$i.'%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-    </div></br>';
     $maj = 'd-none';
     }
-    else
-    {
-    
-    }
-        
+    else{}
 
 
-    //$password contient 2 valeurs correspondante
     if($nombres)
     {
     $i += 20;
-    echo 
-    '<div class="progress">
-        <div class="progress-bar progress-bar-striped'.$color.' progress-bar-animated" role="progressbar" style="width:'.$i.'%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-    </div></br>';
     $num = 'd-none';
     }
-    else
-    {
-    
-    }
-    
+    else{}
 
-    //$password contient 3 valeurs correspondantes
+    
     if($minuscules)
     {
     $i += 20;
-    echo 
-    '<div class="progress">
-        <div class="progress-bar progress-bar-striped'.$color.' progress-bar-animated" role="progressbar" style="width:'.$i.'%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-    </div></br>';
     $min = 'd-none';
     }
-    else
-    {
+    else{}
+
     
-    }
-    
-    //$password contient 4 valeurs correspondantes
     if($specialChars)
     {
     $i += 20;
-    echo 
-    '<div class="progress">
-        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width:'.$i.'%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
-    </div></br>';
     $spe = 'd-none';
     }
-    else
-    {
+    else{}
+
     
-    }
-    
-    //$password contient 4 valeurs correspondantes et fait 12 caractères minimum
     if(strlen($password) >= 12)
     {
     $i += 20;
-    echo
-    '<div class="progress">
-        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width:'.$i.'%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-    </div></br>';
     $mdp = 'd-none';
     }
-    else
-    {
-    
-    }
+    else{}
 
+    $color = '';
+    echo 
+        '<div class="progress">
+            <div class="progress-bar progress-bar-striped '.$color.' progress-bar-animated" role="progressbar" style="width:'.$i.'%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+        </div></br>';
 
     if(strlen($password) >= 12 && $majuscules && $minuscules && $nombres && $specialChars)
     {
-    $i = 100;
+    $i == 100;
     echo '<button type="button" class="btn btn-success"><a href="index.php?password=">OK</a></button>';
     }
     else
@@ -126,19 +90,24 @@ function checkPassword($password) {
         </div>';
     }
     
-    
-
     Switch($i)
     {
-    case 20:
-        $color = 'bg-danger';
-    case 40:
-        $color = 'bg-warning';
-    case 60:
-        $color = 'bg-info';
-    case 100:
-        $color = 'd-none';
+        case 20:
+            $color = 'bg-danger';
+            break;
+        case 40:
+            $color =  'bg-warning';
+            break;
+        case 60:
+            $color = 'bg-info';
+            break;
+        case 80:
+            $color = NULL;
+            break;
+        case 100:
+            $color = 'bg-success';
+            break;
     }
-
-    
+    print_r($i);
+    print_r($color);
 }
