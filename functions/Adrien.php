@@ -12,7 +12,7 @@ function checkPassword($password) {
     $majuscules = preg_match('@[A-Z]@', $password);
     $minuscules = preg_match('@[a-z]@', $password);
     $nombres    = preg_match('@[0-9]@', $password);
-    $specialChars = preg_match('@[^\w]@', $password);
+    $specialChars = preg_match('@[-&(_)=+$^ù*:!;,?]@', $password);
     $i = NULL;
     
     //if there's nothing
