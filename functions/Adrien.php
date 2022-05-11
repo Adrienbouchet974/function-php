@@ -65,11 +65,10 @@ function checkPassword($password) {
     }
     else{}
 
-    $color = '';
-    echo 
-        '<div class="progress">
-            <div class="progress-bar progress-bar-striped '.$color.' progress-bar-animated" role="progressbar" style="width:'.$i.'%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-        </div></br>';
+    $color = NULL;
+    echo '<div class="progress">';
+    echo '<div class="progress-bar progress-bar-striped '.$color.' progress-bar-animated" role="progressbar" style="width:'.$i.'%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>';
+    echo '</div></br>';
 
     if(strlen($password) >= 12 && $majuscules && $minuscules && $nombres && $specialChars)
     {
@@ -108,6 +107,4 @@ function checkPassword($password) {
             $color = 'bg-success';
             break;
     }
-    print_r($i);
-    print_r($color);
 }
