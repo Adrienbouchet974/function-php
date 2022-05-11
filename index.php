@@ -1,7 +1,7 @@
 <?php
     // ...
 
-use function Adrien\checkPassword;
+use function adrien\checkPassword;
 
 ?>
 
