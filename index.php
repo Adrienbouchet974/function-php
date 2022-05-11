@@ -1,5 +1,5 @@
 <?php
-    // ...
+    include_once('./functions/adrien.php');
 
 use function adrien\checkPassword;
 
@@ -27,8 +27,7 @@ use function adrien\checkPassword;
 
                 $password = $_GET['password'];
 
-                include_once('./functions/adrien.php');
-                checkPassword($password);
+                adrien\checkPassword($password);
 
             }
             else {
